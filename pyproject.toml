@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "aiogram-template"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiogram = "^3.13.1"
+sqlalchemy = "^2.0.35"
+asyncio = "^3.4.3"
+pydantic-settings = "^2.5.2"
+asyncpg = "^0.29.0"
+psycopg = "^3.2.2"
+alembic = "^1.13.3"
+pydantic = "^2.9.2"
+httpx = "^0.27.2"
+python-jose = "^3.3.0"
+psycopg2-binary = "^2.9.9"
+starlette = "^0.41.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
