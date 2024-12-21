@@ -1,0 +1,20 @@
+version: '3.8'
+# Docker compose to include bot inside same network as a Backend
+# Fully integrated with FastApi Template (https://github.com/peplxx/fast-template)
+services:
+  telegram-bot:
+    container_name: 'telegram-bot'
+    build: ./telegram-bot
+    env_file: .env
+    environment:
+      - POSTGRES_HOST=database
+    command: [ "sh", "-c", "poetry run alembic upgrade head && poetry run python -m app " ]
+    networks:
+      - fast-template_default
+volumes:
+  bot-data:
+
+networks:
+  fast-template_default:
+    external: true
+    driver: bridge

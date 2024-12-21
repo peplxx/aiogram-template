@@ -7,7 +7,7 @@ services:
     image: 'postgres:14'
     restart: always
     networks:
-      - tg-default
+      - default
     env_file:
       - .env
     ports:
@@ -32,10 +32,10 @@ services:
       - POSTGRES_HOST=database
     command: [ "sh", "-c", "poetry run alembic upgrade head && poetry run python -m app " ]
     networks:
-      - tg-default
+      - default
 
 
 networks:
-  tg-default:
+  default:
 volumes:
   telegram-data:

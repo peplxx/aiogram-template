@@ -12,7 +12,10 @@ run-local: db upgrade
 	poetry run python -m app
 
 run-docker:
-	docker compose up --remove-orphans
+	docker compose up --remove-orphans --build
+
+run-include:
+	docker compose -f docker-compose-include.yaml up --build
 
 env:
 	cp .env.example .env
