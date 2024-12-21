@@ -1,0 +1,15 @@
+# PyCharm
+.idea
+
+# Vscode
+.vscode
+
+# Cashe
+__pycache__
+.ruff_cache/
+
+# Enviroment
+.env
+
+
+
