@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: 'postgressfdsgd'
+    image: 'postgres:14'
+    restart: always
+    networks:
+      - default
+    env_file:
+      - .env
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    environment:
+      POSTGRES_MAX_CONNECTIONS: 200
+    volumes:
+      - data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 5s
+      retries: 5
+      start_period: 5s
+      timeout: 2s
+
+  telegram-bot:
+    container_name: 'aiogram'
+    build: .
+    env_file: .env
+    environment:
+      - POSTGRES_HOST=database
+    command: [ "sh", "-c", "poetry run alembic upgrade head && poetry run python -m app " ]
+    networks:
+      - default
+
+
+networks:
+  default:
+volumes:
+  data:
