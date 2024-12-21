@@ -11,5 +11,8 @@ upgrade:
 run-local: db upgrade
 	poetry run python -m app
 
+run-docker:
+	docker compose up --remove-orphans
+
 env:
 	cp .env.example .env
